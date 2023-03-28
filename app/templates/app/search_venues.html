@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Search{% endblock title %}
+{% block main-content %}
+
+<div>
+    {% if searched %} 
+    <!--<h1> {{searched}}</h1>-->
+    <br>
+    {% if venues %}
+    {% for product in venues %} 
+    <a href="{% url 'product-detail' product.id%}" class="nav-link">
+        <div class="row">
+            <div class="col-sm-6 text-center align-self-center">
+             <img src="{{product.product_image.url}}" alt="" class="img-fluid img-thumbnail">
+            </div>
+            <div class="col-sm-5 offset-sm-1 text-dark">
+             <h2>Product Title:{{product.title}}</h2>
+             </div>
+             </div>
+    </a>
+    <hr>
+    <br><br>
+    {% endfor %}
+    {% else %} 
+    <h1 class="text-center">No Product Found</h1>
+    {% endif %}
+    {% else %} 
+    <h1 class="text-center">You Searched Nothing</h1>
+    {% endif %}
+</div>
+
+{% endblock main-content %}
